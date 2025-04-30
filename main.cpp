@@ -1,6 +1,7 @@
 // abs complex example
 #include <iostream>     // std::cout
 #include <complex>      // std::complex, std::abs
+#include "ComplexPlane.h"
 using namespace std;
 
 void testConvergence(complex<double> c)
