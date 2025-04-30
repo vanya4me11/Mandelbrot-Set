@@ -1,6 +1,5 @@
 #ifndef COMPLEXPLANE_H
 #define COMPLEXPLANE_H
-#endif
 
 const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
@@ -40,3 +39,5 @@ class ComplexPlane
         void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
         Vector2f mapPixelToCoords(Vector2i mousePixel);
 };
+
+#endif
