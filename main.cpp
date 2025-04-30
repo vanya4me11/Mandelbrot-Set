@@ -32,8 +32,10 @@ Construct the Font and Text objects*/
 
 #include <iostream>     // std::cout
 #include <complex>      // std::complex, std::abs
+#include <SFML/Graphics.hpp> // Includes graphics definitions, also added after example
 #include "ComplexPlane.h"  //THIS LINE IS NOT FROM EXAMPLE; ADDED LATER.
 using namespace std;
+using namespace sf;
 
 void testConvergence(complex<double> c)
 {
