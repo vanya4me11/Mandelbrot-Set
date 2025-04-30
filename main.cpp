@@ -7,7 +7,7 @@ Construct the RenderWindow
 Construct the ComplexPlane
 Construct the Font and Text objects*/
 
-*/Begin the main loop
+/*Begin the main loop
     Handle Input segment
         Poll Windows queue events
             Handle Event::Closed event to close the window
