@@ -1,6 +1,10 @@
 #ifndef COMPLEXPLANE_H
 #define COMPLEXPLANE_H
 
+#include <SFML/Graphics.hpp> // Includes graphics definitions, also added after example
+using namespace std;
+using namespace sf;
+
 const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
@@ -15,8 +19,7 @@ enum State {CALCULATING, DISPLAYING};
 class ComplexPlane
 {
     public:
-        // Public functions
-        // There are some argument types that don't seem to have been defined?
+            // Public functions
         ComplexPlane(int pixelWidth, int pixelHeight);
         void draw(RenderTarget& target, RenderStates states) const;
         void zoomIn();
@@ -26,7 +29,7 @@ class ComplexPlane
         void loadText(Text& text);
         void updateRender();
     private:
-        // Private variables
+            // Private variables
         VertexArray m_vArray;
         State m_state;
         Vector2f m_mouseLocation;
@@ -34,8 +37,8 @@ class ComplexPlane
         Vector2f m_plane_size;
         int m_zoomCount;
         float m_aspectRatio;
-        // Private functions
-        int countIterations(Vector2f coord);
+            // Private functions
+        size_t countIterations(Vector2f coord);
         void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
         Vector2f mapPixelToCoords(Vector2i mousePixel);
 };
