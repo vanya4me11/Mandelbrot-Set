@@ -1,5 +1,6 @@
 #ifndef COMPLEXPLANE_H
 #define COMPLEXPLANE_H
+#endif
 
 const unsigned int MAX_ITER = 64;
 const float BASE_WIDTH = 4.0;
