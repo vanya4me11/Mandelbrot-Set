@@ -25,7 +25,7 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
 target.draw(m_vArray);
 }
 
-void complexPlane::updateRender()
+void ComplexPlane::updateRender()
 {
 /*If m_State is CALCULATING
     Create a double for loop to loop through all pixels in the screen height and width
@@ -87,7 +87,7 @@ Note: Cursor should update live as the user moves the mouse.  Center should only
 size_t ComplexPlane::countIterations(Vector2f coord)
 {
 //Count the number of iterations of the set for the given coordinate as specified above
-
+    return 0;   // Placeholder return
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b) 
@@ -132,5 +132,7 @@ Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
       The magnitude (d - c) is always equal to either m_plane_size.x or m_plane_size.y, depending on which direction you are calculating
       The offset of +c is always equal to either (m_plane_center.x - m_plane_size.x / 2.0) or (m_plane_center.y - m_plane_size.y / 2.0)
   SEE PROJECT PAGE FOR VISUAL EXAMPLE OF ALGORITHIM*/
+
+    return Vector2f(0.0, 0.0); // Placeholder return
 
 }
