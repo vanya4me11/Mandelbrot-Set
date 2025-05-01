@@ -132,6 +132,16 @@ int main ()
 			window.close();
 		}
 
+        /*
+        ****************************************
+        Update Scene
+        ****************************************
+        */
+
+        // Calls updateRender and loadText on ComplexPlane object
+        plane.updateRender();
+        plane.loadText(text);
+
 
         /*
         ****************************************
