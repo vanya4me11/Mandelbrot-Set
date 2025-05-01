@@ -152,6 +152,9 @@ int main ()
 		// Clear window display
 		window.clear();
 
+        // >> Initializes and updates the text to be drawn.
+        plane.loadText(text);
+
 		// Draws plane and text to window
         plane.draw(window, sf::RenderStates::Default);
         window.draw(text);
