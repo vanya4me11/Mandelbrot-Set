@@ -1,5 +1,6 @@
 #include "ComplexPlane.h"
 #include <sstream> 
+#include <iomanip>
 
 //NOTE: You can adjust the window size and MAX_ITER to make it run faster or slower if needed for testing/performance
 
@@ -77,6 +78,7 @@ void ComplexPlane::loadText(Text& text)
     textStream << "Mandelbrot Set" << endl;
     //TODO: MAKE CENTER ONLY UPDATE UPON CLICKING.
     textStream << "Center: (" << m_plane_center.x << ',' << m_plane_center.y << ')' << endl;
+    //TODO: m_mouseLocation does not properly read y coordinate.
     textStream << "Cursor: (" << m_mouseLocation.x << ',' << m_mouseLocation.y << ')' << endl;
     textStream << "Left-click to Zoom in" << endl;
     textStream << "Right-click to Zoom out" << endl;

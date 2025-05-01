@@ -69,7 +69,7 @@ int main ()
     // Starter user prompt code copied from Chaos Game project, mostly here for quick reference for how to perform operations to it and to be replaced or reworked
     text.setFont(berlinSans);
     text.setString("Placeholder Text");
-    text.setCharacterSize(50);
+    text.setCharacterSize(30);
     text.setFillColor(Color::Cyan);
     text.setStyle(Text::Regular);
     text.setPosition(50, 50);
@@ -142,7 +142,6 @@ int main ()
         plane.updateRender();
         plane.loadText(text);
 
-
         /*
         ****************************************
         Window Rendering
@@ -151,9 +150,6 @@ int main ()
 
 		// Clear window display
 		window.clear();
-
-        // >> Initializes and updates the text to be drawn.
-        plane.loadText(text);
 
 		// Draws plane and text to window
         plane.draw(window, sf::RenderStates::Default);
