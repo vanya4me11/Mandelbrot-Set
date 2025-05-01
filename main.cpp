@@ -69,7 +69,7 @@ int main ()
     // Starter user prompt code copied from Chaos Game project, mostly here for quick reference for how to perform operations to it and to be replaced or reworked
     text.setFont(berlinSans);
     text.setString("Placeholder Text");
-    text.setCharacterSize(50);
+    text.setCharacterSize(30);
     text.setFillColor(Color::Cyan);
     text.setStyle(Text::Regular);
     text.setPosition(50, 50);
@@ -141,7 +141,6 @@ int main ()
         // Calls updateRender and loadText on ComplexPlane object
         plane.updateRender();
         plane.loadText(text);
-
 
         /*
         ****************************************

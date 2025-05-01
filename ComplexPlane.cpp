@@ -1,4 +1,6 @@
 #include "ComplexPlane.h"
+#include <sstream> 
+#include <iomanip>
 
 //NOTE: You can adjust the window size and MAX_ITER to make it run faster or slower if needed for testing/performance
 
@@ -71,10 +73,17 @@ void ComplexPlane::setMouseLocation(Vector2i mousPixel)
 
 void ComplexPlane::loadText(Text& text)
 {
-/*Use a stringstream and the corresponding member variables to create the following output:
-SEE PROJECT PAGE FOR EXAMPLE
-Note: Cursor should update live as the user moves the mouse.  Center should only update after they click.*/
-
+    string fullString;
+    stringstream textStream;
+    textStream << "Mandelbrot Set" << endl;
+    //TODO: MAKE CENTER ONLY UPDATE UPON CLICKING.
+    textStream << "Center: (" << m_plane_center.x << ',' << m_plane_center.y << ')' << endl;
+    //TODO: m_mouseLocation does not properly read y coordinate.
+    textStream << "Cursor: (" << m_mouseLocation.x << ',' << m_mouseLocation.y << ')' << endl;
+    textStream << "Left-click to Zoom in" << endl;
+    textStream << "Right-click to Zoom out" << endl;
+    fullString = textStream.str();
+    text.setString(fullString);
 }
 
 size_t ComplexPlane::countIterations(Vector2f coord)
