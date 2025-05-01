@@ -108,8 +108,27 @@ void ComplexPlane::loadText(Text& text)
 
 size_t ComplexPlane::countIterations(Vector2f coord)
 {
-//Count the number of iterations of the set for the given coordinate as specified above
-    return 0;   // Placeholder return
+//Count the number of iterations of the set for the given coordinate
+
+    size_t count = 0;
+
+    float x = 0.0f;
+    float y = 0.0f;
+    float x2 = 0.0f;
+    float y2 = 0.0f;
+
+    while (x2 + y2 <= 4.0f && count < MAX_ITER)
+    {
+        y = 2 * x * y + coord.y;
+        x = x2 - y2 + coord.x;
+
+        x2 = x * x;
+        y2 = y * y;
+
+        ++count;
+    }
+
+    return count;   // Placeholder return
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
