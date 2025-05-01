@@ -36,6 +36,7 @@ Construct the Font and Text objects*/
 using namespace std;
 using namespace sf;
 
+// Seems to be a test function to aid in development. Not fully sure what it entails but it probably makes more sense when looking more into how the Mandelbrot works.
 void testConvergence(complex<double> c)
 {
     cout << "c = " << c << endl;
@@ -56,12 +57,35 @@ void testConvergence(complex<double> c)
 
 int main ()
 {
+    // Initialize engine related objects
+    VideoMode vm(1366, 768);                                    // Creates a VideoMode object (other default is 1920 x 1080)
+    RenderWindow window(vm, "Chaos Game!!", Style::Default);    // Creates and opens a window for the game
+    ComplexPlane plane();                                       // ComplexPlane object
+    Text text;                                                  // Text object to display text
+    Font berlinSans;                                            // Font object to store font
+        if (!berlinSans.loadFromFile("BRLNSDB.TTF"))
+        {cout << "Error: Font cannot be loaded" << endl;}
+
+    // Starter user prompt code copied from Chaos Game project, mostly here for quick reference for how to perform operations to it and to be replaced or reworked
+    text.setFont(berlinSans);
+    text.setString("Click on any three points to define a triangle.");
+    text.setCharacterSize(24);
+    text.setFillColor(Color::White);
+    text.setStyle(Text::Bold);
+    text.setPosition(10, 10);
+    
+    // Initializes doubles, likely used to construct Mandelbrot?
     double re = -0.77568377;
     double im = 0.13646737;
     complex<double> c (re, im);
+
+    // Tests convergence and prints to the console
     testConvergence(c);
     cout << endl;
+
+    // Sets c to different values and tests again
     c = {-0.77568377, 0.23646737};
     testConvergence(c);
+
     return 0;
 }
