@@ -109,21 +109,21 @@ int main ()
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
                     // Zoom in on the plane
-                    plane.setCenter(sf::Mouse::getPosition(window));
                     plane.zoomIn();
+                    plane.setCenter(sf::Mouse::getPosition(window));
 				}
 				// Right Click
 				else if (event.mouseButton.button == sf::Mouse::Right)
 				{
                     // Zoom out of the plane
-                    plane.setCenter(sf::Mouse::getPosition(window));
                     plane.zoomOut();
+                    plane.setCenter(sf::Mouse::getPosition(window));
 				}
 			}
             // Constantly calls and updates mouse location whenever it moves
             if (event.type == sf::Event::MouseMoved)
             {
-                plane.setMouseLocation(sf::Mouse::getPosition(window) * 2);
+                plane.setMouseLocation(sf::Mouse::getPosition(window));
             }
 		}
 		// Escape key; closes the window
