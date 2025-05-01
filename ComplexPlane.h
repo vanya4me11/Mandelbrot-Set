@@ -34,6 +34,7 @@ class ComplexPlane
         State m_state;
         Vector2f m_mouseLocation;
         Vector2i m_pixel_size;
+        Vector2f m_plane_center;
         Vector2f m_plane_size;
         int m_zoomCount;
         float m_aspectRatio;
