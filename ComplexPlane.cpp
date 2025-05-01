@@ -112,23 +112,29 @@ size_t ComplexPlane::countIterations(Vector2f coord)
 
     size_t count = 0;
 
+    //>> initalize x and y coords, and x^2, y^2
     float x = 0.0f;
     float y = 0.0f;
     float x2 = 0.0f;
     float y2 = 0.0f;
 
+            //>> check if abs(z) > 4, if z = x^2 + y^2
+            //>> make sure the count is not going for ever
     while (x2 + y2 <= 4.0f && count < MAX_ITER)
     {
+            //>> use old x and y to calculate new
+            //>> y is imaginary component
         y = 2 * x * y + coord.y;
         x = x2 - y2 + coord.x;
-
+            
+            //>> recalculate x^2, y^2 every iteration of the loop
         x2 = x * x;
         y2 = y * y;
 
         ++count;
     }
 
-    return count;   // Placeholder return
+    return count;   // return
 }
 
 void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
