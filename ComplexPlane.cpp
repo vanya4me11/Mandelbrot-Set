@@ -32,9 +32,9 @@ void ComplexPlane::updateRender()
     if (m_state == CALCULATING)
     {
         // Iterate through all pixels on screen; j is x and i is y
-        for (int j = 0; j < VideoMode::getDesktopMode().width; j++)
+        for (int j = 0; j < VideoMode::getDesktopMode().width / 2; j++)
         {
-            for (int i = 0; i < VideoMode::getDesktopMode().height; i++)
+            for (int i = 0; i < VideoMode::getDesktopMode().height / 2; i++)
             {
                 int index = j + i * m_pixel_size.x;
                 
