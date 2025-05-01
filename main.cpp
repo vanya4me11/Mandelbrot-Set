@@ -60,8 +60,7 @@ int main ()
     // Initialize engine related objects
     VideoMode vm(650, 450);                                                                             // Creates a VideoMode object (common default is 1920 x 1080)
     RenderWindow window(vm, "Mandelbrot", Style::Default);                                              // Creates and opens a window for the game
-    // NOTE: ComplexPlane pixel size temporarily divided by 10 for testing purposes
-    ComplexPlane plane(VideoMode::getDesktopMode().width / 10, VideoMode::getDesktopMode().height / 10);  // ComplexPlane object
+    ComplexPlane plane(VideoMode::getDesktopMode().width, VideoMode::getDesktopMode().height);          // ComplexPlane object
     Text text;                                                                                          // Text object to display text
     Font berlinSans;                                                                                    // Font object to store font
         if (!berlinSans.loadFromFile("BRLNSDB.TTF"))
@@ -110,14 +109,14 @@ int main ()
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
                     // Zoom in on the plane
-                    cout << "+" << endl;
+                    plane.setCenter(sf::Mouse::getPosition(window));
                     plane.zoomIn();
 				}
 				// Right Click
 				else if (event.mouseButton.button == sf::Mouse::Right)
 				{
                     // Zoom out of the plane
-                    cout << "-" << endl;
+                    plane.setCenter(sf::Mouse::getPosition(window));
                     plane.zoomOut();
 				}
 			}
