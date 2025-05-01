@@ -38,31 +38,30 @@ void ComplexPlane::updateRender()
         {
             for (int i = 0; i < VideoMode::getDesktopMode().height / 10; i++)
             {
+                int index = j + i * m_pixel_size.x;
+                
                 // Set position variable in the element of VertexArray that corresponds to the screen coordinate j,i
-                m_vArray[j + i * m_pixel_size.x].position = Vector2f((float)j, (float)i);
+                m_vArray[index].position = Vector2f((float)j, (float)i);
+
+                //>> Map to complex plane
+                Vector2f complexCoordinate = this->mapPixelToCoords(Vector2i(j, i));
+
                 // Count iterations in current coordinate and store in variable
-                size_t iterations = this->countIterations(this->mapPixelToCoords(Vector2i(j, i)));
+                size_t iterations = this->countIterations(complexCoordinate);
+
+                //>> turn the iteration count to RGB values
+                Uint8 r, g, b;
+                this->iterationsToRGB(iterations, r, g, b);
+                
+                m_vArray[index].color = Color(r, g, b);
             }
         }
-    }
-    std::cout << "Calculating" << endl;
-    /*If m_State is CALCULATING
-        Create a double for loop to loop through all pixels in the screen height and width
-            Use j for x and i for y
-                Note:  be careful not to transpose these!
-            Set the position variable in the element of VertexArray that corresponds to the screen coordinate j,i
-                This involves mapping the two-dimensional position at j,i to its one-dimensional array index:
-                    vArray[j + i * pixelWidth].position = { (float)j,(float)i };
-            Use ComplexPlane::mapPixelToCoords to find the Vector2f coordinate in the complex plane that corresponds to the screen pixel location at j,i
-            Call ComplexPlane::countIterations with the Vector2f coordinate as its argument and store the number of iterations
-            Declare three local Uint8 variables r,g,b to store the RGB values for the current pixel
-                Uint8 is an alias for unsigned char
-            Pass the number of iterations and the RGB variables into ComplexPlane::iterationsToRGB
-                This will assign the RGB values by reference
-            Set the color variable in the element of VertexArray that corresponds to the screen coordinate j,i
-                vArray[j + i * pixelWidth].color = { r,g,b };
-        Set the state to DISPLAYING*/
 
+        m_state = DISPLAYING;
+
+        std::cout << "Finished calculating!" << std::endl;
+    }
+ 
 }
 
 void ComplexPlane::zoomIn()
