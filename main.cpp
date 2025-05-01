@@ -124,7 +124,7 @@ int main ()
             // Constantly calls and updates mouse location whenever it moves
             if (event.type == sf::Event::MouseMoved)
             {
-                plane.setMouseLocation(Vector2i(event.mouseButton.x, event.mouseButton.y));
+                plane.setMouseLocation(sf::Mouse::getPosition(window));
             }
 		}
 		// Escape key; closes the window
