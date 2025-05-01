@@ -109,17 +109,22 @@ int main ()
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
                     // Zoom in on the plane
-                    cout << "+";
+                    cout << "+" << endl;
                     plane.zoomIn();
 				}
 				// Right Click
 				else if (event.mouseButton.button == sf::Mouse::Right)
 				{
                     // Zoom out of the plane
-                    cout << "-";
+                    cout << "-" << endl;
                     plane.zoomOut();
 				}
 			}
+            // Constantly calls and updates mouse location whenever it moves
+            if (event.type == sf::Event::MouseMoved)
+            {
+                plane.setMouseLocation(Vector2i(event.mouseButton.x, event.mouseButton.y));
+            }
 		}
 		// Escape key; closes the window
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
