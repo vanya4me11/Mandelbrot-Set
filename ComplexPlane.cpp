@@ -17,7 +17,6 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
     m_plane_size = Vector2f(BASE_WIDTH, BASE_HEIGHT * m_aspectRatio);   // Size of plane object
     m_zoomCount = 0;                                                    // Zoom Count of plane object
     m_state = CALCULATING;                                              // State of plane object
-    // NOTE: Instructions said to initialize VertexArray. Maybe it's already fine, but noting this in case any weird errors happen. Initialization may just mean what is below.
     m_vArray.setPrimitiveType(Points);                                  // Sets primitive type of vertex array to Points
     m_vArray.resize(pixelWidth * pixelHeight);                          // Sets size of vertex array according to pixel size
 }
@@ -98,7 +97,6 @@ void ComplexPlane::loadText(Text& text)
     textStream << "Mandelbrot Set" << endl;
     //TODO: MAKE CENTER ONLY UPDATE UPON CLICKING.
     textStream << "Center: (" << m_plane_center.x << ',' << m_plane_center.y << ')' << endl;
-    //TODO: m_mouseLocation does not properly read y coordinate.
     textStream << "Cursor: (" << m_mouseLocation.x << ',' << m_mouseLocation.y << ')' << endl;
     textStream << "Left-click to Zoom in" << endl;
     textStream << "Right-click to Zoom out" << endl;
@@ -108,7 +106,7 @@ void ComplexPlane::loadText(Text& text)
 
 size_t ComplexPlane::countIterations(Vector2f coord)
 {
-//Count the number of iterations of the set for the given coordinate
+    //Count the number of iterations of the set for the given coordinate
 
     size_t count = 0;
 
@@ -142,8 +140,9 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     /*Map the given iteration count to an r,g,b color and assign the given reference variables
           Color Mapping: SEE "https://www.w3schools.com/colors/colors_hsl.asp" */
 
-          //>> if the count is at or exceeds the max iteration, the pixel should be black
-          //>> this is exactly where we could implement a gradient, replacing the black pixels. Im thinking their values would be decided by their position on the plane ~
+    //>> if the count is at or exceeds the max iteration, the pixel should be black
+    //>> this is exactly where we could implement a gradient, replacing the black pixels.
+    //>> Im thinking their values would be decided by their position on the plane ~
 
     if (count >= MAX_ITER)
     {
@@ -198,16 +197,15 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 {
-                                                                            //>> Calculate the Boundaries of the complex plane given plane center and size
+    //>> Calculate the Boundaries of the complex plane given plane center and size
     float left = m_plane_center.x - m_plane_size.x / 2.0f;
     float right = m_plane_center.x + m_plane_size.x / 2.0f;
     float top = m_plane_center.y + m_plane_size.y / 2.0f;
     float bottom = m_plane_center.y - m_plane_size.y / 2.0f;
 
-
-                                                                            //>> Map x pixel with given formula
+    //>> Map x pixel with given formula
     float real = ((mousePixel.x - 0.0f) / (m_pixel_size.x - 0.0f)) * (right - left) + left;
-                                                                            //>> y pixel
+    //>> y pixel
     float imaginary = ((mousePixel.y - static_cast<float>(m_pixel_size.y)) / -m_pixel_size.y) * (top - bottom) + bottom;
 
     return Vector2f(real, imaginary);
