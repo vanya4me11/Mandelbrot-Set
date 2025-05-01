@@ -44,31 +44,29 @@ void ComplexPlane::updateRender()
 
 void ComplexPlane::zoomIn()
 {
-++m_zoomCount;
-m_plane_size = Vector2f(BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount)), BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount)));
-m_state = CALCULATING;
+    ++m_zoomCount;
+    m_plane_size = Vector2f(BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount)), BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount)));
+    m_state = CALCULATING;
 }
 
 void ComplexPlane::zoomOut() 
 {
- --m_zoomCount;
-m_plane_size = Vector2f(BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount)), BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount)));
-m_state = CALCULATING;
+     --m_zoomCount;
+    m_plane_size = Vector2f(BASE_WIDTH * (pow(BASE_ZOOM, m_zoomCount)), BASE_HEIGHT * m_aspectRatio * (pow(BASE_ZOOM, m_zoomCount)));
+    m_state = CALCULATING;
 }
 
 void ComplexPlane::setCenter(Vector2i mousePixel)
 {
-/*Use ComplexPlane::mapPixelToCoords to find the Vector2f coordinate in the complex plane that corresponds to the screen pixel location
-Assign m_plane_center with this coordinate
-Set m_State to CALCULATING*/
-  
+    //>> HAS NOT BEEN TESTED
+    m_plane_center = mapPixelToCoords(mousePixel);
+    m_state = CALCULATING;
 }
 
 void ComplexPlane::setMouseLocation(Vector2i mousPixel)
 {
-/*Use ComplexPlane::mapPixelToCoords to find the Vector2f coordinate in the complex plane that corresponds to the screen pixel location
-Assign m_mouseLocation with this coordinate*/
-  
+    //>> HAS NOT BEEN TESTED
+    m_mouseLocation = mapPixelToCoords(mousPixel);
 }
 
 void ComplexPlane::loadText(Text& text)
