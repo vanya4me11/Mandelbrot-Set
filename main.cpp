@@ -142,7 +142,8 @@ int main ()
 		// Clear window display
 		window.clear();
 
-		// NOTE: For future reference, use window.draw(shapeName); to draw shapes to the window. Drawing objects should go here.
+		// Draws plane and text to window
+        plane.draw(window, sf::RenderStates::Default);
         window.draw(text);
 
         // Show constructed window display
