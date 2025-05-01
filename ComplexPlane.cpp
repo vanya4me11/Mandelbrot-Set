@@ -2,22 +2,18 @@
 
 //NOTE: You can adjust the window size and MAX_ITER to make it run faster or slower if needed for testing/performance
 
+// Constructor for ComplexPlane
 ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight) 
 {
-/*Assign m_pixel_size with the parameter values
-  Calculate and assign the aspect ratio of the monitor, m_aspectRatio
-      height / width
-      Be careful of integer divide
-      Our object needs to know this so the plane is not distorted 
-  Assign m_plane_center with {0,0}
-  Assign m_plane_size with {BASE_WIDTH, BASE_HEIGHT * m_aspectRatio}
-  Assign m_zoomCount with 0
-  Assign m_State with State::CALCULATING to be ready for the initial screen
-  Initialize VertexArray
-      We will use this to draw a color for each pixel
-      Set its primitive type to Points
-      Resize it to pixelWidth* pixelHeight*/
-
+    m_pixel_size = Vector2i(pixelWidth, pixelHeight);                   // Size of each pixel
+    m_aspectRatio = (pixelWidth * 1.0) / (pixelHeight * 1.0);           // Calculates aspect ratio according to pixel size, used to avoid plane distortion
+    m_plane_center = Vector2f(0.0, 0.0);                                // Center of plane object
+    m_plane_size = Vector2f(BASE_WIDTH, BASE_HEIGHT * m_aspectRatio);   // Size of plane object
+    m_zoomCount = 0;                                                    // Zoom Count of plane object
+    m_state = CALCULATING;                                              // State of plane object
+    // NOTE: Instructions said to initialize VertexArray. Maybe it's already fine, but noting this in case any weird errors happen. Initialization may just mean what is below.
+    m_vArray.setPrimitiveType(Points);                                  // Sets primitive type of vertex array to Points
+    m_vArray.resize(pixelWidth * pixelHeight);                          // Sets size of vertex array according to pixel size
 }
 
 void ComplexPlane::draw(RenderTarget& target, RenderStates states) const 
