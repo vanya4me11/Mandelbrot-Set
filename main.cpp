@@ -58,11 +58,12 @@ void testConvergence(complex<double> c)
 int main ()
 {
     // Initialize engine related objects
-    VideoMode vm(650, 450);                                     // Creates a VideoMode object (common default is 1920 x 1080)
-    RenderWindow window(vm, "Mandelbrot", Style::Default);      // Creates and opens a window for the game
-    ComplexPlane plane(2, 2);                                   // ComplexPlane object
-    Text text;                                                  // Text object to display text
-    Font berlinSans;                                            // Font object to store font
+    VideoMode vm(650, 450);                                                                             // Creates a VideoMode object (common default is 1920 x 1080)
+    RenderWindow window(vm, "Mandelbrot", Style::Default);                                              // Creates and opens a window for the game
+    // NOTE: ComplexPlane pixel size temporarily divided by 10 for testing purposes
+    ComplexPlane plane(VideoMode::getDesktopMode().width / 10, VideoMode::getDesktopMode().height / 10);  // ComplexPlane object
+    Text text;                                                                                          // Text object to display text
+    Font berlinSans;                                                                                    // Font object to store font
         if (!berlinSans.loadFromFile("BRLNSDB.TTF"))
         {cout << "Error: Font cannot be loaded" << endl;}
 
