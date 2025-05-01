@@ -105,27 +105,18 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 
 Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
 {
-/*The purpose of this function is to map a pixel location on your monitor to a coordinate in the complex plane
-  The default range of the complex plane is:
-      real => [-2, 2]
-      imaginary => [-2, 2]
-      The range for imaginary will change depending on the aspect ratio of the monitor
-      These values are stored in m_plane_size
-  Assuming your monitor is something like 1080p, the default range of the display pixels are:
-      x => [0, 1920]
-      y => [1080, 0]
-  Thus, if the user clicks near the middle of the screen, for example at pixel location (960, 540), this should map to (0,0) on the complex plane
-  The general formula to map a value n from range [a,b] into range [c,d] is
-      ((n  - a) / (b - a)) * (d - c) + c
-  In the example above,
-      x = 960 would map to:  ((960 - 0) / (1920 - 0)) * (2 - - 2) + (-2) == 0
-      y = 540 would map to:  ((540 - 1080) / (0 - 1080)) * (2 - - 2) + (-2) == 0
-  The range boundaries of the pixel coordinates will not change
-  Changing zoom levels or changing the center will change the range boundaries of the complex plane
-      The magnitude (d - c) is always equal to either m_plane_size.x or m_plane_size.y, depending on which direction you are calculating
-      The offset of +c is always equal to either (m_plane_center.x - m_plane_size.x / 2.0) or (m_plane_center.y - m_plane_size.y / 2.0)
-  SEE PROJECT PAGE FOR VISUAL EXAMPLE OF ALGORITHIM*/
+                                                                            //>> Calculate the Boundaries of the complex plane given plane center and size
+    float left = m_plane_center.x - m_plane_size.x / 2.0f;
+    float right = m_plane_center.x + m_plane_size.x / 2.0f;
+    float top = m_plane_center.y + m_plane_size.y / 2.0f;
+    float bottom = m_plane_center.y - m_plane_size.y / 2.0f;
 
-    return Vector2f(0.0, 0.0); // Placeholder return
+
+                                                                            //>> Map x pixel with given formula
+    float real = ((mousePixel.x - 0.0f) / (m_pixel_size.x - 0.0f)) * (right - left) + left;
+                                                                            //>> y pixel
+    float imaginary = ((mousePixel.y - static_cast<float>(m_pixel_size.y)) / -m_pixel_size.y) * (top - bottom) + bottom;
+
+    return Vector2f(real, imaginary);
 
 }
