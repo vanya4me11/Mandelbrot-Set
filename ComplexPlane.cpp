@@ -92,23 +92,62 @@ size_t ComplexPlane::countIterations(Vector2f coord)
     return 0;   // Placeholder return
 }
 
-void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b) 
+void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 {
-/*Map the given iteration count to an r,g,b color and assign the given reference variables
-  You are free to create and experiment with your own color scheme
-  You may want to start with gray scale, where r,g,b are always the same value in the range [0,255]
-  I used the following strategy:
-      At MAX_ITER I colored the pixel black {0,0,0}
-      Between [0 : MAX_ITER) I divided the colors into 5 regions:
-          Purple / blue for low iteration counts
-          Turquoise
-          Green
-          Yellow
-          Red for high iteration counts
-      You can create a color "sliding" effect to differentiate more colors by adding or subtracting the iteration count to one color within a region
-  You can experiment with HSL color mapping to see which values to assign for each region
-  Set S to 100% and L to 50% and slide the H:
-      Color Mapping: SEE "https://www.w3schools.com/colors/colors_hsl.asp" */
+    /*Map the given iteration count to an r,g,b color and assign the given reference variables
+          Color Mapping: SEE "https://www.w3schools.com/colors/colors_hsl.asp" */
+
+          //>> if the count is at or exceeds the max iteration, the pixel should be black
+          //>> this is exactly where we could implement a gradient, replacing the black pixels. Im thinking their values would be decided by their position on the plane ~
+
+    if (count >= MAX_ITER)
+    {
+        r = g = b = 0;
+
+        return;
+    }
+
+
+    //>> make count a float somewhere between 0 and 1
+    float t = static_cast<float>(count) / MAX_ITER;
+
+
+    //>> if else to divide range into 5 color regions
+    if (t < 0.2f)
+    {
+        //>> Purple->Blue
+        r = static_cast<Uint8>(128 - 128 * (t / 0.2f));
+        g = 0;
+        b = static_cast<Uint8>(255 * (t / 0.2f));
+    }
+    else if (t < 0.4f)
+    {
+        //>> Blue->Turquoise
+        r = 0;
+        g = static_cast<Uint8>(255 * ((t - 0.2f) / 0.2f));
+        b = 255;
+    }
+    else if (t < 0.6f)
+    {
+        //>>Turquoise->Green
+        r = 0;
+        g = 255;
+        b = static_cast<Uint8>(255 - 255 * ((t - 0.4f) / 0.2f));
+    }
+    else if (t < 0.8f)
+    {
+        //>> Green->Yellow
+        r = static_cast<Uint8>(255 * ((t - 0.4f) / 0.2f));
+        g = 255;
+        b = 0;
+    }
+    else
+    {
+        //>> Yellow->Red
+        r = 255;
+        g = static_cast<Uint8>(255 - 255 * ((t - 0.8f) / 0.2f));
+        b = 0;
+    }
 
 }
 
