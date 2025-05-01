@@ -58,8 +58,8 @@ void testConvergence(complex<double> c)
 int main ()
 {
     // Initialize engine related objects
-    VideoMode vm(1366, 768);                                    // Creates a VideoMode object (other default is 1920 x 1080)
-    RenderWindow window(vm, "Chaos Game!!", Style::Default);    // Creates and opens a window for the game
+    VideoMode vm(650, 450);                                     // Creates a VideoMode object (common default is 1920 x 1080)
+    RenderWindow window(vm, "Mandelbrot", Style::Default);      // Creates and opens a window for the game
     ComplexPlane plane();                                       // ComplexPlane object
     Text text;                                                  // Text object to display text
     Font berlinSans;                                            // Font object to store font
@@ -68,11 +68,11 @@ int main ()
 
     // Starter user prompt code copied from Chaos Game project, mostly here for quick reference for how to perform operations to it and to be replaced or reworked
     text.setFont(berlinSans);
-    text.setString("Click on any three points to define a triangle.");
-    text.setCharacterSize(24);
-    text.setFillColor(Color::White);
-    text.setStyle(Text::Bold);
-    text.setPosition(10, 10);
+    text.setString("Placeholder Text");
+    text.setCharacterSize(50);
+    text.setFillColor(Color::Cyan);
+    text.setStyle(Text::Regular);
+    text.setPosition(50, 50);
     
     // Initializes doubles, likely used to construct Mandelbrot?
     double re = -0.77568377;
@@ -86,6 +86,59 @@ int main ()
     // Sets c to different values and tests again
     c = {-0.77568377, 0.23646737};
     testConvergence(c);
+
+	// Runtime loop
+	while (window.isOpen())
+	{
+		/*
+		****************************************
+		Handle the players input
+		****************************************
+		*/
+		Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+			{
+				// Quit the game when the window is closed
+				window.close();
+			}
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				// Left Click
+				if (event.mouseButton.button == sf::Mouse::Left)
+				{
+					cout << "Left Click" << endl; // Placeholder output
+				}
+				// Right Click
+				else if (event.mouseButton.button == sf::Mouse::Right)
+				{
+					cout << "Right Click" << endl; // Placeholder output
+				}
+			}
+		}
+		// Escape key; closes the window
+		if (Keyboard::isKeyPressed(Keyboard::Escape))
+		{
+			window.close();
+		}
+
+
+        /*
+        ****************************************
+        Window Rendering
+        ****************************************
+        */
+
+		// Clear window display
+		window.clear();
+
+		// NOTE: For future reference, use window.draw(shapeName); to draw shapes to the window. Drawing objects should go here.
+        window.draw(text);
+
+        // Show constructed window display
+		window.display();
+	}
 
     return 0;
 }
