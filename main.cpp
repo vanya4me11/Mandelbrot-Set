@@ -131,6 +131,23 @@ int main ()
 		{
 			window.close();
 		}
+        // WASD and Arrow Keys to pan the camera around
+        if (Keyboard::isKeyPressed(Keyboard::W) || Keyboard::isKeyPressed(Keyboard::Up))
+        {
+            plane.pan(Vector2f(0.0, 1.0));
+        }
+        if (Keyboard::isKeyPressed(Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Left))
+        {
+            plane.pan(Vector2f(-1.0, 0.0));
+        }
+        if (Keyboard::isKeyPressed(Keyboard::S) || Keyboard::isKeyPressed(Keyboard::Down))
+        {
+            plane.pan(Vector2f(0.0, -1.0));
+        }
+        if (Keyboard::isKeyPressed(Keyboard::D) || Keyboard::isKeyPressed(Keyboard::Right))
+        {
+            plane.pan(Vector2f(1.0, 0.0));
+        }
 
         /*
         ****************************************

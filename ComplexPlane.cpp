@@ -76,6 +76,15 @@ void ComplexPlane::zoomOut()
     m_state = CALCULATING;
 }
 
+void ComplexPlane::pan(Vector2f direction)
+{
+    if (m_state == DISPLAYING)
+    {
+        m_plane_center = Vector2f((m_plane_center.x + direction.x / (10 + pow(2, m_zoomCount))), (m_plane_center.y + direction.y / (10 + pow(2, m_zoomCount))));
+        m_state = CALCULATING;
+    }
+}
+
 void ComplexPlane::setCenter(Vector2i mousePixel)
 {
     //>> HAS NOT BEEN TESTED
