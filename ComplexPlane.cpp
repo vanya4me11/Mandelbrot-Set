@@ -87,14 +87,12 @@ void ComplexPlane::pan(Vector2f direction)
 
 void ComplexPlane::setCenter(Vector2i mousePixel)
 {
-    //>> HAS NOT BEEN TESTED
     m_plane_center = mapPixelToCoords(mousePixel);
     m_state = CALCULATING;
 }
 
 void ComplexPlane::setMouseLocation(Vector2i mousPixel)
 {
-    //>> HAS NOT BEEN TESTED
     m_mouseLocation = mapPixelToCoords(mousPixel);
 }
 
@@ -103,7 +101,6 @@ void ComplexPlane::loadText(Text& text)
     string fullString;
     stringstream textStream;
     textStream << "Mandelbrot Set" << endl;
-    //TODO: MAKE CENTER ONLY UPDATE UPON CLICKING.
     textStream << "Center: (" << m_plane_center.x << ',' << m_plane_center.y << ')' << endl;
     textStream << "Cursor: (" << m_mouseLocation.x << ',' << m_mouseLocation.y << ')' << endl;
     textStream << "Left-click to Zoom in" << endl;
