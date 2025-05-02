@@ -1,6 +1,7 @@
 #include "ComplexPlane.h"
 #include <sstream> 
 #include <iomanip>
+#include <cmath>
 
 //NOTE: You can adjust the window size and MAX_ITER to make it run faster or slower if needed for testing/performance
 
