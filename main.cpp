@@ -37,10 +37,23 @@ int main ()
     // Starter user prompt code copied from Chaos Game project, mostly here for quick reference for how to perform operations to it and to be replaced or reworked
     text.setFont(berlinSans);
     text.setString("Placeholder Text");
-    text.setCharacterSize(30);
-    text.setFillColor(Color::Cyan);
+    text.setCharacterSize(20);
+    text.setFillColor(Color::White);
     text.setStyle(Text::Regular);
-    text.setPosition(50, 50);
+    text.setPosition(10, 10);
+
+    vector<Text> controlsList(3);
+    controlsList.at(0).setString("Left Click: Zoom In");
+    controlsList.at(1).setString("Right Click: Zoom Out");
+    controlsList.at(2).setString("WASD / Arrow Keys: Pan");
+    for (int i = 0; i < controlsList.size(); i++)
+    {
+        controlsList.at(i).setFont(berlinSans);
+        controlsList.at(i).setCharacterSize(15);
+        controlsList.at(i).setFillColor(Color::White);
+        controlsList.at(i).setStyle(Text::Regular);
+        controlsList.at(i).setPosition(8, (VideoMode::getDesktopMode().height / 2) - (98 + 15 * (3 - i)));
+    }
     
     // Initializes doubles, likely used to construct Mandelbrot?
     double re = -0.77568377;
@@ -139,6 +152,10 @@ int main ()
 		// Draws plane and text to window
         plane.draw(window, sf::RenderStates::Default);
         window.draw(text);
+        for (Text controls : controlsList)
+        {
+            window.draw(controls);
+        }
 
         // Show constructed window display
 		window.display();
