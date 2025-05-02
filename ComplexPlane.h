@@ -24,6 +24,7 @@ class ComplexPlane
         void draw(RenderTarget& target, RenderStates states) const;
         void zoomIn();
         void zoomOut();
+        void pan(Vector2f direction);
         void setCenter(Vector2i mousePixel);
         void setMouseLocation(Vector2i mousePixel);
         void loadText(Text& text);
